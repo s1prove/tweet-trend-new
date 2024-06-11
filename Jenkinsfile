@@ -1,4 +1,6 @@
 def registry = 'https://vomp10.jfrog.io'
+def imageName = 'vomp10.jfrog.io/s1prove-docker-local/ttrend'
+def version   = '2.1.2'
 pipeline {
     agent {
         node {
@@ -47,6 +49,28 @@ environment {
                          server.publishBuildInfo(buildInfo)
                          echo '<--------------- Jar Publish Ended --------------->'  
                 
+                }
+            }
+        }
+
+        stage(" Docker Build ") {
+          steps {
+            script {
+               echo '<--------------- Docker Build Started --------------->'
+               app = docker.build(imageName+":"+version)
+               echo '<--------------- Docker Build Ends --------------->'
+            }
+          }
+        }
+
+        stage (" Docker Publish "){
+            steps {
+                script {
+                   echo '<--------------- Docker Publish Started --------------->'  
+                    docker.withRegistry(registry, 'art-cred'){
+                        app.push()
+                    }    
+                   echo '<--------------- Docker Publish Ended --------------->'  
                 }
             }
         }  
