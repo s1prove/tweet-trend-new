@@ -78,6 +78,7 @@ environment {
         stage("Deploy"){
             steps {
                 script {
+                    //Hello
                     sh './deplot.sh'
                 }
             }
