@@ -73,6 +73,14 @@ environment {
                    echo '<--------------- Docker Publish Ended --------------->'  
                 }
             }
+        }
+
+        stage("Deploy"){
+            steps {
+                script {
+                    sh './deplot.sh'
+                }
+            }
         }  
     } 
 }  
