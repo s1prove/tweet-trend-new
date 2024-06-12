@@ -75,14 +75,14 @@ environment {
             }
         }
 
-        stage("Deploy"){
-            steps {
-                script {
-                    //Hello world!!
-                    sh './deploy.sh'
-                }
-            }
-        }
+        // stage("Deploy"){
+        //     steps {
+        //         script {
+        //             //Hello world!!
+        //             sh './deploy.sh'
+        //         }
+        //     }
+        // }
 
         stage(" Deploy ") {
           steps {
