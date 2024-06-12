@@ -79,7 +79,7 @@ environment {
             steps {
                 script {
                     //Hello
-                    sh './deplot.sh'
+                    sh './deploy.sh'
                 }
             }
         }  
