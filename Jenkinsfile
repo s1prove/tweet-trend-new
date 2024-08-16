@@ -16,16 +16,16 @@ environment {
             }
         }
         
-        // stage('SonarQube analysis') {
-        //     environment {
-        //         scannerHome = tool 'sonar-scanner';
-        //     }
-        //     steps {
-        //         withSonarQubeEnv('sonarqube-server') 
-        //         { // if you have configured more than one global server connection, you can specify its name1
-        //             sh "${scannerHome}/bin/sonar-scanner"
-        //         }
-        //     }
-        // }
+        stage('SonarQube analysis') {
+            environment {
+                scannerHome = tool 'sonar-scanner';
+            }
+            steps {
+                withSonarQubeEnv('sonarqube-server') 
+                { // if you have configured more than one global server connection, you can specify its name1
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
+            }
+        }
     }
 }
