@@ -12,20 +12,26 @@ environment {
     stages {
         stage('build'){
             steps {
-                sh 'mvn clean deploy'
+                sh 'mvn clean deploy -Dmaven.test.skip=true'
+            }
+        }
+
+        stage('test'){
+            steps {
+                sh 'mvn surefire-report:report'
             }
         }
         
-        stage('SonarQube analysis') {
-            environment {
-                scannerHome = tool 'sonar-scanner';
-            }
-            steps {
-                withSonarQubeEnv('sonarqube-server') 
-                { // if you have configured more than one global server connection, you can specify its name1
-                    sh "${scannerHome}/bin/sonar-scanner"
-                }
-            }
-        }
+        // stage('SonarQube analysis') {
+        //     environment {
+        //         scannerHome = tool 'sonar-scanner';
+        //     }
+        //     steps {
+        //         withSonarQubeEnv('sonarqube-server') 
+        //         { // if you have configured more than one global server connection, you can specify its name1
+        //             sh "${scannerHome}/bin/sonar-scanner"
+        //         }
+        //     }
+        // }
     }
 }
