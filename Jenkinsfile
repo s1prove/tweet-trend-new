@@ -16,15 +16,9 @@ environment {
             }
         }
         
-        stage('SCM') {
-            steps {
-                git 'https://github.com/foo/bar.git'
-            }
-        }
-        
         stage('SonarQube analysis') {
             environment {
-                scannerHome = tool 'sonnar-scanner';
+                scannerHome = tool 'sonar-scanner';
             }
             steps {
                 withSonarQubeEnv('sonarqube-server') 
